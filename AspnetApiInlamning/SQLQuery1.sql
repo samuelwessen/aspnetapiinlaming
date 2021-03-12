@@ -14,5 +14,6 @@ CREATE TABLE ErrandIssues (
 	ServiceWorkerId int not null references ServiceWorker(Id),
 	Created DateTime not null,
 	Changed DateTime,
+	[Description] nvarchar(MAX) not null,
 	ErrandStatus nvarchar(20)
 )

@@ -1,0 +1,52 @@
+﻿@page "/createerrand"
+@inject HttpClient Http
+
+<h1>Create new errand</h1>
+
+<EditForm Model="createerrand" OnSubmit="@CreateErrandAsync">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Customer name" @bind="createerrand.CustomersName" required />
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Worker Id" @bind="createerrand.ServiceWorkerId" required />
+    </div>
+    <div class="form-group">
+        <input type="datetime" class="form-control" placeholder="Created" @bind="createerrand.Created" required />
+    </div>
+    <div class="form-group">
+        <input type="datetime" class="form-control" placeholder="Changed" @bind="createerrand.Changed" />
+    </div>
+    <div class="form-group">
+        <input type="datetime" class="form-control" placeholder="Status" @bind="createerrand.ErrandStatus" required />
+    </div>
+    <div class="form-group">
+        <input type="datetime" class="form-control" placeholder="Description" @bind="createerrand.Description" required />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Create errand</button>
+    </div>
+
+</EditForm>
+
+
+
+
+
+@code {
+    private CreateErrandIssueViewModel createerrand;    
+
+    private async Task CreateErrandAsync()
+    {
+        await Http.PostAsJsonAsync<CreateErrandIssueViewModel>("https://localhost:44385/api/ErrandIssues/create", createerrand);
+        createerrand = new CreateErrandIssueViewModel();
+    }
+
+    
+
+    protected override void OnInitialized()
+    {
+        createerrand = new CreateErrandIssueViewModel();
+    }
+
+
+}

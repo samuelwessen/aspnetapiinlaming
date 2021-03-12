@@ -1,0 +1,52 @@
+﻿@page "/errands"
+@inject HttpClient Http
+
+
+<h1>Errands</h1>
+<p>This is all the Errands</p>
+
+@if(errandIssues == null)
+{
+    <p>No errands found</p>
+}
+else 
+{
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>Service Worker Id</th>
+            <th>Created</th>
+            <th>Changed</th>
+            <th>Errand Status</th>
+            <th>Description</th>
+        </tr>
+
+
+        @foreach(var errandissue in errandIssues)
+        {
+            <tr>
+                <td>@errandissue.Id</td>
+                <td>@errandissue.CustomersName</td>
+                <td>@errandissue.ServiceWorkerId</td>
+                <td>@errandissue.Created</td>
+                <td>@errandissue.Changed</td>
+                <td>@errandissue.ErrandStatus</td>
+                <td>@errandissue.Description</td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+
+
+@code {
+    private IEnumerable<ErrandIssueViewModel> errandIssues;
+
+    protected override async Task OnInitializedAsync()
+    {
+        errandIssues = await Http.GetFromJsonAsync<IEnumerable<ErrandIssueViewModel>>("https://localhost:44385/api/ErrandIssues");
+    }
+}

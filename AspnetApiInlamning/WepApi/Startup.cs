@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WepApi.Data;
+using WepApi.Services;
 
 namespace WepApi
 {
@@ -29,6 +30,7 @@ namespace WepApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+            services.AddScoped<IIdentityService, IdentityService>();
             services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>

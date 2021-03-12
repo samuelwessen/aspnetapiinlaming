@@ -13,6 +13,7 @@ namespace SharedLibrary.Entities
         public DateTime Created { get; set; }
         public DateTime? Changed { get; set; }
         public string ErrandStatus { get; set; }
+        public string Description { get; set; }
 
         public virtual ServiceWorker ServiceWorker { get; set; }
     }

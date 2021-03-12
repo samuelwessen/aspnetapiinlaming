@@ -37,6 +37,10 @@ namespace WepApi.Data
                     .IsRequired()
                     .HasMaxLength(100);
 
+                entity.Property(e => e.Description)
+                    .IsRequired();
+                    
+
                 entity.Property(e => e.ErrandStatus)
                     .IsRequired()
                     .HasMaxLength(20);
